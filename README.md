@@ -13,20 +13,45 @@
 - Schema validation.
 - Building route definitions from a Swagger 2.0 document.
 - Validation helpers for input parameters.
+- Validation helpers for response.
 
 ### Usage
 
 ```javascript
 var builder = require('swaggerize-content-type-validated-routes');
 
-var routes = builder({
+const routeBuilder = builder({
     api: require('./api.json'),
     handlers: './handlers',
     security: './security' //Optional - security authorize handlers as per `securityDefinitions`
 }));
+
+//Promise Style
+routeBuilder.then(routeObj => {
+    let { api, routes } = routeObj;
+    // `api` is the resolved swagger api Object ($ref, both remote and local references are resolved)
+    // `routes` - an array of routes corresponding to the swagger api `paths`.
+
+}).catch(error => Assert.ifError(error));
+
+//OR
+
+// Callback style
+builder({
+    api: 'http://petstore.swagger.io/v2/swagger.json',
+    handlers: './handlers',
+    security: './security', //Optional - security authorize handlers as per `securityDefinitions`
+    joischema: true //Set to true if `joischema` need to be used for validators.
+}), (error, routes) => {
+    Assert.ifError(error);
+    let { api, routes } = routeObj;
+    // `api` is the resolved swagger api Object ($ref and remote and local ref are resolved)
+    // `routes` - an array of routes corresponding to the swagger api `paths`.
+});
+
 ```
 
-Options:
+### API
 
 - `api` - a valid Swagger 2.0 object.
 - `handlers` - either a directory structure for route handlers or a premade object (see *Handlers Object* below).
@@ -35,7 +60,6 @@ Options:
 - `schemas` - an array of `{name: string, schema: string|object}` representing additional schemas to add to validation.
 - `security` - directory to scan for authorize handlers corresponding to `securityDefinitions`.
 
-**Returns:** An array of the processed routes.
 
 ### Handlers Directory
 
@@ -191,13 +215,13 @@ The `routes` array returned from the call to the builder will contain `route` ob
 - `consumes` - same as `consumes` in `api` definition.
 - `produces` - same as `produces` in `api` definition.
 
-### Validator Object
+#### Validator Object
 
 The validator object in the `validators` array will have the following properties:
 
-- `parameter` - same as the `parameter` from the operation on `path`.
 - `validate(value, callback)` - a function for validating the input data against the `parameter` definition.
-- `schema` - the `joi` schema being validated against.
+- `spec` - The schema of the parameter.
+- `joischema` - The `joi` schema being validated against. This will be available only for the validators with option `joischema` set as `true`. By default the validator uses `is-my-json-valid` JSON schema validator and `joischema` property in validator object will be `undefined`.
 
 ### Security directory
 
