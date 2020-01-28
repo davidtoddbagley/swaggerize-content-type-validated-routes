@@ -1,12 +1,15 @@
-# swaggerize-routes (formerly swaggerize-builder)
+# swaggerize-content-type-validated-routes (forked from swaggerize-routes)
 
+<!-- 
 [![Build Status](https://travis-ci.org/krakenjs/swaggerize-routes.svg?branch=master)](https://travis-ci.org/krakenjs/swaggerize-routes)
 [![NPM version](https://badge.fury.io/js/swaggerize-routes.png)](http://badge.fury.io/js/swaggerize-routes)  
+ -->
 
-`swaggerize-routes` is a component used by [swaggerize-express](https://github.com/krakenjs/swaggerize-express) and [swaggerize-hapi](https://github.com/krakenjs/swaggerize-hapi) for parsing and building route definitions based on a [Swagger 2.0 document](https://github.com/wordnik/swagger-spec/blob/master/versions/2.0.md).
+`swaggerize-content-type-validated-routes` is a component forked from `swaggerize-routes` and used by [swaggerize-express](https://github.com/krakenjs/swaggerize-express) and [swaggerize-hapi](https://github.com/krakenjs/swaggerize-hapi) for parsing and building route definitions based on a [Swagger 2.0 document](https://github.com/wordnik/swagger-spec/blob/master/versions/2.0.md).
 
-`swaggerize-routes` provides the following features:
+`swaggerize-content-type-validated-routes` provides the following features:
 
+- Media type validation.
 - Schema validation.
 - Building route definitions from a Swagger 2.0 document.
 - Validation helpers for input parameters.
@@ -14,7 +17,7 @@
 ### Usage
 
 ```javascript
-var builder = require('swaggerize-routes');
+var builder = require('swaggerize-content-type-validated-routes');
 
 var routes = builder({
     api: require('./api.json'),

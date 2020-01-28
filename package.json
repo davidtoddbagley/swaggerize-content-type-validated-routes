@@ -1,21 +1,26 @@
 {
-  "name": "swaggerize-routes",
-  "version": "1.0.11",
-  "author": "Trevor Livingston <trlivingston@paypal.com>",
+  "name": "swaggerize-content-type-validated-routes",
+  "version": "0.0.1",
+  "author": "Todd Bagley <davidtoddbagley@gmail.com>",
   "contributors": [
     {
       "name": "Francois-Guillaume Ribreau",
       "email": "npm@fgribreau.com",
       "url": "http://fgribreau.com/"
+    },
+    {
+      "name": "Trevor Livingston",
+      "email": "trlivingston@paypal.com",
+      "url": "http://github.com/krakenjs/swaggerize-builder"
     }
   ],
-  "description": "Swagger based route building.",
+  "description": "Swagger based route building with content-type validation.",
   "main": "./lib/index",
   "repository": {
     "type": "git",
-    "url": "git://github.com/krakenjs/swaggerize-builder.git"
+    "url": "git://github.com/davidtoddbagley/swaggerize-routes.git"
   },
-  "bugs": "http://github.com/krakenjs/swaggerize-builder/issues",
+  "bugs": "https://github.com/davidtoddbagley/swaggerize-routes/issues",
   "engines": {
     "node": "<=4.x"
   },
