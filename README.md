@@ -20,11 +20,23 @@
 ```javascript
 var builder = require('swaggerize-content-type-validated-routes');
 
-const routeBuilder = builder({
-    api: require('./api.json'),
-    handlers: './handlers',
-    security: './security' //Optional - security authorize handlers as per `securityDefinitions`
-}));
+/* Trigger Validation of supported Content-Types 
+ *  for the Requested Route and Method
+ *  as defined in the Swagger file */
+const validateRequestBySwaggerDefinedRouteMethodAndContentType = {
+    mediaType: req.get('Content-Type') || req.get('Accept') || '',
+    method: req.method && req.method.trim().toLowerCase(),
+    path: req.route && req.route.path && req.route.path.replace('/api', '').trim()
+};
+
+const routeBuilder = builder(
+    {
+        api: require('./api.json'),
+        handlers: './handlers',
+        security: './security' //Optional - security authorize handlers as per `securityDefinitions`
+    },
+    validateRequestBySwaggerDefinedRouteMethodAndContentType
+);
 
 //Promise Style
 routeBuilder.then(routeObj => {
