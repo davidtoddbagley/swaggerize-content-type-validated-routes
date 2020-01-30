@@ -1,5 +1,3 @@
-# WIP - work in progress
-
 # swaggerize-content-type-validated-routes (forked from swaggerize-routes version 1.0.11)
 
 <!-- 
